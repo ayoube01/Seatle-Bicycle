@@ -33,4 +33,53 @@ daily = data.resample('D').sum()
 daily.rolling(30, center=True).sum().plot(style=[':', '--', '-'])
 plt.ylabel('mean hourly count');
 
+#visusaliser la moyenne du trafic en fonction des heures de la journée
+
+
+
+by_time = data.groupby(data.index.time).mean()
+hourly_ticks = 4 * 60 * 60 * np.arange(6)
+by_time.plot(xticks=hourly_ticks, style=[':', '--', '-']);
+
+#visualiser la moyenne de trafic en moyenne des jours de la semaine
+
+by_weekday = data.groupby(data.index.dayofweek).mean()
+by_weekday.index = ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+by_weekday.plot(style=[':', '--', '-']);
+
+
+#visualiser selon la semaine et le weekend
+
+weekend = np.where(data.index.weekday < 5, 'Weekday', 'Weekend')
+by_time = data.groupby([weekend, data.index.time]).mean()
+
+by_time.ix['Weekday'].plot(ax=ax[0], title='Weekdays',
+                           xticks=hourly_ticks, style=[':', '--', '-'])
+by_time.ix['Weekend'].plot(ax=ax[1], title='Weekends',
+                           xticks=hourly_ticks, style=[':', '--', '-']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
