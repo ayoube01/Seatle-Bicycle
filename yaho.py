@@ -16,7 +16,7 @@ data['Total'] = data.eval('West + East')
 data.dropna().describe()
 
 
-#visialuser la base de donnée en fonction des heures
+#visialuser la base de donnée en fonction des heures de la journée
 data.plot()
 plt.ylabel('Hourly Bicycle Count');
 
