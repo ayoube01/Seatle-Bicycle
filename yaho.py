@@ -9,7 +9,7 @@ sns.set()
 data = pd.read_csv('FremontBridge.csv', index_col='Date', parse_dates=True)#importeer la base de donnée sous la bonne format
 
 #renomer les deux colonnes pour une meilleur visualisation et et
-#rajouter une nouvelle colonne pour la somme des deux cotes east et weest
+##rajouter une nouvelle colonne pour la somme des deux cotes east et weest
 data.columns = ['West', 'East']
 data['Total'] = data.eval('West + East')
 #faire le bilan de la base de donnée en ignorant les NA
